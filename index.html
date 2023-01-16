@@ -2,31 +2,27 @@
 <html>
 <head>
 <link rel="shortcut icon" href="favicon.ico">
+<link href='https://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no" />
 <meta charset="UTF-8" />
+<link rel="shortcut icon" href="favicon.ico">
 <script type="text/javascript" src="speedtest.js"></script>
 <script type="text/javascript">
 function I(i){return document.getElementById(i);}
 
 //LIST OF TEST SERVERS. See documentation for details if needed
 var SPEEDTEST_SERVERS=[
-	{	//this server doesn't actually exist, remove it
-		name:"Example Server 1", //user friendly name for the server
-		server:"//test1.mydomain.com/", //URL to the server. // at the beginning will be replaced with http:// or https:// automatically
-		dlURL:"backend/garbage.php",  //path to download test on this server (garbage.php or replacement)
-		ulURL:"backend/empty.php",  //path to upload test on this server (empty.php or replacement)
-		pingURL:"backend/empty.php",  //path to ping/jitter test on this server (empty.php or replacement)
-		getIpURL:"backend/getIP.php"  //path to getIP on this server (getIP.php or replacement)
-	},
-	{	//this server doesn't actually exist, remove it
-		name:"Example Server 2", //user friendly name for the server
-		server:"//test2.example.com/", //URL to the server. // at the beginning will be replaced with http:// or https:// automatically
-		dlURL:"garbage.php",  //path to download test on this server (garbage.php or replacement)
-		ulURL:"empty.php",  //path to upload test on this server (empty.php or replacement)
-		pingURL:"empty.php",  //path to ping/jitter test on this server (empty.php or replacement)
-		getIpURL:"getIP.php"  //path to getIP on this server (getIP.php or replacement)
-	}
-	//add other servers here, comma separated
+    {		    	
+	"name":"RaspAP Speedtest server (US)", //user friendly name for the server
+	"server":"//speedtest.raspap.com/", //URL to the server. // at the beginning will be replaced with http:// or https:// automatically
+	"sponsorName":"RaspAP",
+	"sponsorURL":"https://raspap.com",
+	"dlURL":"backend/garbage.php",  //path to download test on this server (garbage.php or replacement)
+	"ulURL":"backend/empty.php",  //path to upload test on this server (empty.php or replacement)
+	"pingURL":"backend/empty.php",  //path to ping/jitter test on this server (empty.php or replacement)
+	"getIpURL":"backend/getIP.php"  //path to getIP on this server (getIP.php or replacement)
+    }
 ];
 
 //INITIALIZE SPEEDTEST
@@ -54,6 +50,7 @@ function initServers(){
                 //show test UI
                 I("testWrapper").className="visible";
                 initUI();
+		updateSponsor();
             }else{ //no servers are available, the test cannot proceed
                 noServersAvailable();
             }
@@ -77,8 +74,7 @@ function initServers(){
 }
 
 var meterBk=/Trident.*rv:(\d+\.\d+)/i.test(navigator.userAgent)?"#EAEAEA":"#80808040";
-var dlColor="#6060AA",
-	ulColor="#616161";
+var dlColor="#6060AA", ulColor="#616161";
 var progColor=meterBk;
 
 //CODE FOR GAUGES
@@ -189,6 +185,23 @@ function initUI(){
 	I("pingText").textContent="";
 	I("jitText").textContent="";
 	I("ip").textContent="";
+}
+function updateSponsor(){
+    var server=SPEEDTEST_SERVERS[I("server").value];
+    if(server==null) return;
+    if(server.sponsorName!=null){
+        I("sponsorArea").style.visibility="visible";
+        if(server.sponsorURL!=null){
+                var a=document.createElement("a");
+                a.href=server.sponsorURL;
+                a.innerText=server.sponsorName;
+                a.target="_blank";
+                I("sponsor").innerHTML="";
+                I("sponsor").appendChild(a);
+        }else{
+            I("sponsor").innerText=server.sponsorName
+        }
+    }else I("sponsorArea").style.visibility="hidden";
 }
 </script>
 <style type="text/css">
@@ -393,10 +406,10 @@ function initUI(){
 		}
 	}
 </style>
-<title>LibreSpeed Example</title>
+<title>RaspAP Speedtest</title>
 </head>
 <body onload="initServers()">
-<h1>LibreSpeed Example</h1>
+<h1>RaspAP Speedtest</h1>
 <div id="loading" class="visible">
 	<p id="message"><span class="loadCircle"></span>Selecting a server...</p>
 </div>
@@ -405,6 +418,7 @@ function initUI(){
 	<a class="privacy" href="#" onclick="I('privacyPolicy').style.display=''">Privacy</a>
 	<div id="serverArea">
 		Server: <select id="server" onchange="s.setSelectedServer(SPEEDTEST_SERVERS[this.value])"></select>
+		<div id="sponsorArea">Sponsor: <span id="sponsor"></span></div>
 	</div>
 	<div id="test">
 		<div class="testGroup">
@@ -443,7 +457,6 @@ function initUI(){
 			<img src="" id="resultsImg" />
 		</div>
 	</div>
-	<a href="https://github.com/librespeed/speedtest">Source code</a>
 </div>
 <div id="privacyPolicy" style="display:none">
     <h2>Privacy Policy</h2>
