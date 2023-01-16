@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="shortcut icon" href="favicon.ico">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
 <link href='https://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no" />
-<meta charset="UTF-8" />
-<link rel="shortcut icon" href="favicon.ico">
 <script type="text/javascript" src="speedtest.js"></script>
 <script type="text/javascript">
 function I(i){return document.getElementById(i);}
@@ -141,7 +146,7 @@ function startStop(){
                 try{
                     var testId=uiData.testId;
                     if(testId!=null){
-                        var shareURL=window.location.href.substring(0,window.location.href.lastIndexOf("/"))+"/results/?id="+testId;
+                        var shareURL=window.location.href.substring(0,window.location.href.lastIndexOf("/"))+"/results/index.php?id="+testId;
                         I("resultsImg").src=shareURL;
                         I("resultsURL").value=shareURL;
                         I("testId").innerHTML=testId;
@@ -207,7 +212,7 @@ function updateSponsor(){
 <style type="text/css">
 	html,body{
 		border:none; padding:0; margin:0;
-		background:#FFFFFF;
+		background:#f8f9fc;
 		color:#202020;
 	}
 	body{
@@ -218,7 +223,7 @@ function updateSponsor(){
 		color:#404040;
 	}
 	#loading{
-		background-color:#FFFFFF;
+		background-color:#f8f9fc;
 		color:#404040;
 		text-align:center;
 	}
@@ -239,9 +244,9 @@ function updateSponsor(){
 	#startStopBtn{
 		display:inline-block;
 		margin:0 auto;
-		color:#6060AA;
+		color:#2b8080;
 		background-color:rgba(0,0,0,0);
-		border:0.15em solid #6060FF;
+		border:0.15em solid #2b8080;
 		border-radius:0.3em;
 		transition:all 0.3s;
 		box-sizing:border-box;
@@ -459,9 +464,9 @@ function updateSponsor(){
 	</div>
 </div>
 <div id="privacyPolicy" style="display:none">
-    <h2>Privacy Policy</h2>
+    <h2>RaspAP Privacy Policy</h2>
     <p>This HTML5 Speedtest server is configured with telemetry enabled.</p>
-    <h4>What data we collect</h4>
+    <h4>Data we collect</h4>
     <p>
         At the end of the test, the following data is collected and stored:
         <ul>
@@ -490,8 +495,7 @@ function updateSponsor(){
     </p>
     <h4>Data removal</h4>
     <p>
-        If you want to have your information deleted, you need to provide either the ID of the test or your IP address. This is the only way to identify your data, without this information we won't be able to comply with your request.<br/><br/>
-        Contact this email address for all deletion requests: <a href="mailto:PUT@YOUR_EMAIL.HERE">TO BE FILLED BY DEVELOPER</a>.
+        If you want to have your information deleted, you need to provide either the ID of the test or your IP address. This is the only way to identify your data, without this information we won't be able to comply with your request. Contact <a href="mailto:&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#114;&#97;&#115;&#112;&#97;&#112;&#46;&#99;&#111;&#109;">&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#114;&#97;&#115;&#112;&#97;&#112;&#46;&#99;&#111;&#109;</a> for all deletion requests.
     </p>
     <br/><br/>
     <div class="closePrivacyPolicy">
